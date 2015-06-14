@@ -4,15 +4,40 @@ body {
     /*padding-top: 50px;*/
     font-family: 'Open Sans', sans-serif;
 }
-
 /**General*/
 .clickable {
     cursor: pointer;
 }
 
+/**Navigation*/
+.navigation-bar {
+    margin-bottom: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navigation-bar a {
+    font-size: 2em;
+    padding: 0.25em;
+}
+
+.navigation-bar-active {
+    border-bottom: 1px black solid;
+}
+
+.navigation-bar a:hover, .navigation-bar a:focus    {
+    text-decoration: none;
+}
+
+/**Clock*/
+.clock-container {
+    margin: 0 auto;
+    width: 680px;
+}
+
 /**Countdown*/
 .countdown-container {
-    margin: 10% auto;
+    margin: 0 auto;
     width: 680px;
 }
 
@@ -44,22 +69,20 @@ body {
 
 /**Stopwatch*/
 .stopwatch-container {
-    margin: 10% auto;
+    margin: 0 auto;
     width: 680px;
 }
 
-.clock {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.splits-header {
+    border-bottom: 1px gray solid;
 }
+
 
 .time-display {
     font-size: 8em;
     text-align: center;
 }
-
+/**OLD*/
 .reminder:hover {
     background-color: lightgray;
 }
@@ -90,8 +113,4 @@ body {
 .clock-light-off {
     background-color: black;
     color: grey;
-}
-
-.splits-header {
-    border-bottom: 1px gray solid;
 }

@@ -1,0 +1,12 @@
+<div data-ng-if="countdown.counting || countdown.finished"
+     class="countdown-bar text-center"
+     data-ng-class="{'countdown-over-alert-on' : countdown.finished && countdown.alert,
+                     'countdown-over-alert-off' : countdown.finished && !countdown.alert}">
+    <span data-ng-if="getPercentageCountdownRemaining() === 0 && countdown.finished">
+        Countdown Finished
+    </span>
+    <span data-ng-if="getPercentageCountdownRemaining() !== 0"
+          data-ng-bind="showTime ? (countdown.timeRemainingInMs | time:'hh:mm:ss.ms') : getPercentageCountdownRemaining().toFixed(0) + '%'"
+          class="countdown-bar-used text-center"
+          data-ng-style="{'width': getPercentageCountdownRemaining() + '%'}"></span>
+</div>

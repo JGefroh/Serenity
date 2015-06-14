@@ -9,7 +9,8 @@
             'ui.bootstrap',
             'Serenity.Filter',
             'Serenity.Stopwatch',
-            'Serenity.Countdown'
+            'Serenity.Countdown',
+            'Serenity.Clock'
         ]);
     angular
         .module('Serenity')

@@ -28,9 +28,11 @@
         <script src="Serenity.min.js"></script>
     </head>
     <body>
-        <a ui-sref="countdown">Countdown</a>
-        <a ui-sref="stopwatch">Stopwatch</a>
-        <a ui-sref="clock">Clock</a>
+        <div class="navigation-bar text-center">
+            <a ui-sref="clock" ui-sref-active="navigation-bar-active">Clock</a>
+            <a ui-sref="countdown" ui-sref-active="navigation-bar-active">Countdown</a>
+            <a ui-sref="stopwatch" ui-sref-active="navigation-bar-active">Stopwatch</a>
+        </div>
         <div data-ui-view></div>
     </body>
 <!--
