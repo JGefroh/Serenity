@@ -1,0 +1,28 @@
+<div class="stopwatch-container">
+    <div class="countdown">
+        <span data-ng-click="resetCountdown()"
+              class="fa fa-history fa-lg clickable"></span>
+        <input data-ng-model="countdown.inputTime"
+               data-ng-keyup="setCountdownTimer(countdown.inputTime)"
+               class="countdown-input pull-right">
+        <div class="btn-group pull-right">
+            <div data-toggle="dropdown">
+                <span class="fa fa-clock-o fa-lg fa-fw pull-right clickable"
+                      style="margin-top: 0.3em;"></span>
+            </div>
+            <ul class="dropdown-menu text-center">
+                <li><a data-ng-click="countdown.inputTime = '1m'; setCountdownTimer(countdown.inputTime)" class="clickable">in 1 minute...</a></li>
+                <li><a data-ng-click="countdown.inputTime = '10m'; setCountdownTimer(countdown.inputTime)" class="clickable">in 10 minutes...</a></li>
+                <li><a data-ng-click="countdown.inputTime = '20m'; setCountdownTimer(countdown.inputTime)" class="clickable">in 20 minutes...</a></li>
+                <li><a data-ng-click="countdown.inputTime = '25m'; setCountdownTimer(countdown.inputTime)" class="clickable">in 25 minutes...</a></li>
+                <li><a data-ng-click="countdown.inputTime = '30m'; setCountdownTimer(countdown.inputTime)" class="clickable">in 30 minutes...</a></li>
+                <li><a data-ng-click="countdown.inputTime = '1h'; setCountdownTimer(countdown.inputTime)" class="clickable">in 1 hour...</a></li>
+                <li><a data-ng-click="countdown.inputTime = '1h 30m'; setCountdownTimer(countdown.inputTime)" class="clickable">in 1 hour and 30 minutes...</a></li>
+            </ul>
+        </div>
+        <h1 data-ng-click="toggleCountdown()"
+            class="time-display clickable">
+            <span data-ng-bind="countdown.timeRemainingInMs | time:'hh:mm:ss.ms'"></span>
+        </h1><br/>
+    </div>
+</div>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html data-ng-app="Serenity" data-ng-controller="AppCtrl as appCtrl"
+      manifest="jg_todolist.appcache">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Serenity</title>
+
+    <link href="resources/css/bootstrap.min.css" rel="stylesheet">
+    <link href="resources/css/application.css" rel="stylesheet">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <script src="resources/js/jquery-1.11.1.min.js"></script>
+    <script src="resources/js/bootstrap.min.js"></script>
+    <!--[if lt IE 9]>
+    <script src="resources/js/html5shiv-3.7.2.min.js"></script>
+    <script src="resources/js/respond-1.4.2.min.js"></script>
+    <![endif]-->
+
+    <!--AngularJS-->
+    <script src="resources/js/angular-1.2.23/angular.min.js"></script>
+    <script src="resources/js/angular-ui-router-v0.2.13.min.js"></script>
+    <script src="resources/js/ui-bootstrap-tpls-0.11.0.min.js"></script>
+
+    <!--App Script Files-->
+    <script src="Serenity.min.js"></script>
+</head>
+<body data-ng-init="clock.lightOn = true"
+      data-ng-class="{'clock-light-on': clock.lightOn,
+                          'clock-light-off': !clock.lightOn}">
+<div class="clock">
+    <div data-ng-if="!clock.isShowingStopwatch">
+                <span>
+                    {{ currentTime | date: 'EEEE MMMM dd, yyyy'}}
+                    <span class="pull-right">
+                        <span class="fa fa-cloud"></span>
+                        <span class="fa fa-umbrella"></span>
+                        <span data-ng-show="!clock.lightOn"
+                              data-ng-click="clock.lightOn = !clock.lightOn" class="fa fa-inverse fa-lightbulb-o clickable"></span>
+                        <span data-ng-show="clock.lightOn"
+                              data-ng-click="clock.lightOn = !clock.lightOn" class="fa fa-lightbulb-o clickable"></span>
+                    </span>
+                </span>
+        <h1 data-ng-click="clock.is24HourFormat = !clock.is24HourFormat"
+            class="time-display clickable">
+            <span data-ng-if="!clock.is24HourFormat">{{ currentTime | date: 'hh:mm:ss a'}}</span>
+            <span data-ng-if="clock.is24HourFormat">{{ currentTime | date: 'HH:mm:ss'}}</span>
+        </h1>
+        <div class="progress" style="background-color: transparent;">
+            <div class="progress-bar"
+                 style="width: 20%"
+                 data-ng-class="{'clock-light-on': !clock.lightOn,
+                                         'clock-light-off': clock.lightOn}">
+                <span data-ng-click="clock.isShowingStopwatch = true" class="clickable">{{stopwatch.totalTime}}</span>
+            </div>
+        </div>
+        <h5 style="border-bottom: 1px black solid;" data-ng-init="upcoming = {}">
+            Reminders
+                <span data-ng-click="addReminder()"
+                      class="fa fa-plus clickable"></span>
+        </h5>
+        <div data-ng-repeat="reminder in reminders | orderBy:'scheduledTimestamp'"
+             class="reminder">
+            <div class="btn-group">
+                <div data-toggle="dropdown">
+                            <span data-ng-show="!reminder.scheduledTimestamp"
+                                  class="reminder-timestamp clickable">Unscheduled</span>
+                            <span data-ng-show="clock.is24HourFormat && reminder.scheduledTimestamp"
+                                  data-ng-bind="reminder.scheduledTimestamp | date: 'HH:mm'"
+                                  class="reminder-timestamp clickable"></span>
+                            <span data-ng-show="!clock.is24HourFormat && reminder.scheduledTimestamp"
+                                  data-ng-bind="reminder.scheduledTimestamp | date: 'hh:mm a'"
+                                  class="reminder-timestamp clickable"></span>
+                </div>
+                <ul class="dropdown-menu text-center">
+                    <li><a data-ng-click="schedule(reminder, '10MINUTE')" class="clickable">in 10 minutes...</a></li>
+                    <li><a data-ng-click="schedule(reminder, '30MINUTE')" class="clickable">in 30 minutes...</a></li>
+                    <li><a data-ng-click="schedule(reminder, '1HOUR')" class="clickable">in 1 hour...</a></li>
+                    <li><a data-ng-click="schedule(reminder, '2HOUR')" class="clickable">in 2 hours...</a></li>
+                    <li><a data-ng-click="schedule(reminder, '3HOUR')" class="clickable">in 3 hours...</a></li>
+                    <li><hr></li>
+                    <li class="text-center">
+                        <a data-ng-click="scheduleAt(reminder, reminder.scheduledTimestampCopy)" class="clickable">Use Time</a>
+                        <input data-ng-click="stopEvent($event)"
+                               data-ng-model="reminder.scheduledTimestampCopy"
+                               data-show-meridian="!clock.is24HourFormat"
+                               data-timepicker
+                               placeholder="Enter a time..."
+                               class="reminder-timepicker">
+                    </li>
+                </ul>
+            </div>
+            |
+
+            <input data-ng-model="reminder.text"
+                   placeholder="Enter a reminder description..."
+                   class="reminder-text"
+                   data-ng-class="{'reminder-overdue': isOverdue(reminder)}">
+                    <span data-ng-click="removeReminder(reminder)"
+                          class="fa fa-trash fa-fw clickable pull-right"></span>
+        </div>
+    </div>
+    <div data-ng-if="clock.isShowingStopwatch">
+        <span>Stopwatch</span>
+        <h1 class="time-display clickable">
+                    <span data-ng-click="toggleStopwatch()"
+                          data-ng-bind="stopwatch.totalTime"></span>
+        </h1>
+                <span data-ng-click="clock.isShowingStopwatch = false" class="clickable">
+                      <span data-ng-if="!clock.is24HourFormat">{{ currentTime | date: 'hh:mm:ss a'}}</span>
+                      <span data-ng-if="clock.is24HourFormat">{{ currentTime | date: 'HH:mm:ss'}}</span>
+                </span>
+                <span>
+                    {{ currentTime | date: 'EEEE MMMM dd, yyyy'}}
+                    <span class="pull-right">
+                        <span class="fa fa-cloud"></span>
+                        <span class="fa fa-umbrella"></span>
+                        <span data-ng-show="!clock.lightOn"
+                              data-ng-click="clock.lightOn = !clock.lightOn" class="fa fa-inverse fa-lightbulb-o clickable"></span>
+                        <span data-ng-show="clock.lightOn"
+                              data-ng-click="clock.lightOn = !clock.lightOn" class="fa fa-lightbulb-o clickable"></span>
+                    </span>
+                </span>
+    </div>
+</div>
+</body>
+<!--
+What time is it?
+What date is it?
+How's the weather?
+Did I miss anything?
+Is there anything I have to do soon?
+Clock
+Stopwatch
+-->
+</html>

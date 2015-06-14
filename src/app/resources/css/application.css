@@ -1,0 +1,79 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+
+body {
+    /*padding-top: 50px;*/
+    font-family: 'Open Sans', sans-serif;
+}
+
+/**General*/
+.clickable {
+    cursor: pointer;
+}
+
+/**Countdown*/
+.countdown-container {
+    margin: 10% auto;
+    width: 680px;
+}
+
+.countdown-input {
+    border: none;
+    border-bottom: 1px gray solid;
+    text-align: right;
+    width:120px;
+    font-size: 1.2em;
+}
+
+/**Stopwatch*/
+.stopwatch-container {
+    margin: 10% auto;
+    width: 680px;
+}
+
+.clock {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.time-display {
+    font-size: 8em;
+    text-align: center;
+}
+
+.reminder:hover {
+    background-color: lightgray;
+}
+.reminder-timestamp {
+    border-bottom: 1px dotted gray;
+}
+
+.reminder-text {
+    border: none;
+    display: inline-block;
+    width: 50%;
+    background-color: transparent;
+}
+
+.reminder-timepicker a {
+    color: black;
+}
+
+.reminder-overdue {
+    text-decoration: line-through;
+}
+
+.clock-light-on {
+    background-color: white;
+    color: black;
+}
+
+.clock-light-off {
+    background-color: black;
+    color: grey;
+}
+
+.splits-header {
+    border-bottom: 1px gray solid;
+}
