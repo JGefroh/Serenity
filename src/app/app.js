@@ -10,7 +10,8 @@
             'Serenity.Filter',
             'Serenity.Stopwatch',
             'Serenity.Countdown',
-            'Serenity.Clock'
+            'Serenity.Clock',
+            'Serenity.Splash'
         ]);
     angular
         .module('Serenity')

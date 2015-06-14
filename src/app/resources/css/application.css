@@ -9,6 +9,33 @@ body {
     cursor: pointer;
 }
 
+.time-display {
+    font-size: 8em;
+    text-align: center;
+}
+
+/**Splash*/
+.splash-container {
+    width: 680px;
+    margin: 0 auto;
+}
+
+.splash-container {
+    width: 680px;
+    margin-top: 25%;
+    opacity: 0;
+}
+
+.splash-application-name {
+    font-size: 8em;
+}
+
+.splash-intro-animation {
+    opacity: 1;
+    margin-top: 10%;
+    transition: all 1.5s;
+}
+
 /**Navigation*/
 .navigation-bar {
     margin-bottom: 10%;
@@ -77,11 +104,6 @@ body {
     border-bottom: 1px gray solid;
 }
 
-
-.time-display {
-    font-size: 8em;
-    text-align: center;
-}
 /**OLD*/
 .reminder:hover {
     background-color: lightgray;

@@ -1,12 +1,10 @@
 <div class="stopwatch-container">
-    <div class="stopwatch">
-        <span data-ng-click="resetStopwatch()"
-              class="fa fa-history fa-lg clickable"></span>
-        <h1 data-ng-click="toggleStopwatch()"
-            class="time-display clickable">
-            <span data-ng-bind="stopwatch.timeTrackedInMs | time:'hh:mm:ss.ms'"></span>
-        </h1>
-    </div>
+    <span data-ng-click="resetStopwatch()"
+          class="fa fa-history fa-lg clickable pull-right"></span>
+    <h1 data-ng-click="toggleStopwatch()"
+        class="time-display clickable">
+        <span data-ng-bind="stopwatch.timeTrackedInMs | time:'hh:mm:ss.ms'"></span>
+    </h1>
     <div class="splits">
         <h4 data-ng-click="recordSplit()"
             class="splits-header clickable">
