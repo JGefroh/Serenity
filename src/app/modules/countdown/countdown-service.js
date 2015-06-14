@@ -7,7 +7,11 @@
             inputTime: '25m',
             timeRemainingInMs: 0,
             counting: false,
-            countdownInterval: null
+            countdownInterval: null,
+            finished: false,
+            alert: false,
+            alertInterval: null,
+            alertPulseInMs: 500
         };
 
         self.getCountdown = function() {
@@ -20,9 +24,7 @@
                 timeInput = convertToMsFromEnglish(input);
             }
             countdown.countdownTimerInMs = timeInput;
-            if (!countdown.counting) {
-                self.resetCountdown();
-            }
+            self.resetCountdown();
         };
 
         function isInEnglish(input) {
@@ -61,6 +63,10 @@
                 if (countdown.timeRemainingInMs - differenceInMs <= 0) {
                     self.stopCountdown();
                     countdown.timeRemainingInMs = 0;
+                    countdown.finished = true;
+                    countdown.alertInterval = $interval(function() {
+                        countdown.alert = !countdown.alert;
+                    }, countdown.alertPulseInMs);
                 }
                 else {
                     countdown.timeRemainingInMs -= differenceInMs;
@@ -77,6 +83,9 @@
 
         self.resetCountdown = function() {
             countdown.timeRemainingInMs = countdown.countdownTimerInMs;
+            countdown.finished = false;
+            countdown.alert = false;
+            $interval.cancel(countdown.alertInterval);
         };
 
         self.toggleCountdown = function() {
@@ -91,6 +100,13 @@
                     self.startCountdown();
                 }
             }
+        };
+
+        self.getPercentageCountdownRemaining = function() {
+            if (!countdown.countdownTimerInMs) {
+                return 0;
+            }
+            return (countdown.timeRemainingInMs/countdown.countdownTimerInMs).toFixed(2) * 100;
         };
 
         self.setCountdownTimer(countdown.inputTime);

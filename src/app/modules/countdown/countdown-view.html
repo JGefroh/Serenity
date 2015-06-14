@@ -21,8 +21,19 @@
             </ul>
         </div>
         <h1 data-ng-click="toggleCountdown()"
-            class="time-display clickable">
+            class="time-display clickable"
+            data-ng-class="{'countdown-over-alert-on' : countdown.finished && countdown.alert,
+                            'countdown-over-alert-off' : countdown.finished && !countdown.alert}">
             <span data-ng-bind="countdown.timeRemainingInMs | time:'hh:mm:ss.ms'"></span>
         </h1><br/>
+        <div class="countdown-bar text-center">
+            <span data-ng-if="getPercentageCountdownRemaining() === 0 && countdown.finished">
+                Countdown Finished
+            </span>
+            <span data-ng-if="getPercentageCountdownRemaining() !== 0"
+                  data-ng-bind="getPercentageCountdownRemaining().toFixed(0) + '%'"
+                  class="countdown-bar-used text-center"
+                  data-ng-style="{'width': getPercentageCountdownRemaining() + '%'}"></span>
+        </div>
     </div>
 </div>

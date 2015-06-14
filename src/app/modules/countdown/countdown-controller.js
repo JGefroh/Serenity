@@ -8,6 +8,7 @@
         $scope.toggleCountdown = CountdownService.toggleCountdown;
         $scope.resetCountdown = CountdownService.resetCountdown;
         $scope.setCountdownTimer = CountdownService.setCountdownTimer;
+        $scope.getPercentageCountdownRemaining = CountdownService.getPercentageCountdownRemaining;
 
         initialize();
     }
