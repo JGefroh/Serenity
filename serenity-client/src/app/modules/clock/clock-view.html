@@ -1,0 +1,32 @@
+<div class="clock-container">
+    <div class="clock">
+        <span data-ng-click="toggleMilitaryDate()"
+              data-ng-bind="clock.currentTimestamp | date:clock.dateFormat"
+              class="clickable"></span>
+        <h1 data-ng-click="toggleMilitaryTime()"
+            class="time-display clickable">
+            <span data-ng-bind="clock.currentTimestamp | date:clock.timeFormat"></span>
+        </h1><br/>
+        <div data-countdown-bar
+             data-show-time="true"
+             class="clickable"
+             ui-sref="countdown"></div>
+        <h5 style="border-bottom: 1px black solid;">
+          Events
+           <span data-ng-click="createMarker()"
+                 class="fa fa-plus clickable"></span>
+        </h5>
+        <div data-ng-repeat="marker in markers"
+             class="marker">
+            <span data-ng-bind="marker.created_at | date:clock.timeFormat"
+                  class="marker-timestamp"></span>
+            |
+            <input data-ng-model="marker.description"
+                   data-ng-blur="updateMarker(marker)"
+                   placeholder="Enter a description..."
+                   class="marker-text">
+                    <span data-ng-click="deleteMarker(marker)"
+                          class="fa fa-trash fa-fw clickable pull-right"></span>
+        </div>
+    </div>
+</div>
