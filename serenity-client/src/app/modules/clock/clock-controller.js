@@ -11,9 +11,7 @@
             $scope.toggleMilitaryDate = ClockService.toggleMilitaryDate;
             $scope.operations = {
               createMarker: {},
-              deleteMarker: {
-                markers: {}
-              }
+              markers: {}
             }
             loadData();
         }
@@ -34,18 +32,17 @@
         }
 
         $scope.updateMarker = function(marker) {
-          MarkerService.updateMarker(marker, SecurityService.user.id).then(function(marker) {
-          });
+          MarkerService.updateMarker(marker, SecurityService.user.id);
         }
 
         $scope.deleteMarker = function(marker) {
-          $scope.operations.deleteMarker.markers[marker.id] = {
+          $scope.operations.markers[marker.id] = {
             status: 'LOADING'
           }
           MarkerService.deleteMarker(marker.id, SecurityService.user.id).then(function() {
             $scope.markers.splice($scope.markers.indexOf(marker), 1);
           }).finally(function() {
-            delete $scope.operations.deleteMarker.markers[marker.id];
+            delete $scope.operations.markers[marker.id];
           });
         }
 
