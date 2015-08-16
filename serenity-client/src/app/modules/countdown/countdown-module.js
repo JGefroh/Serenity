@@ -2,7 +2,7 @@
     function Routes($stateProvider) {
         $stateProvider
             .state('countdown', {
-                url: '/countdown',
+                url: '/countdown/:list_uuid',
                 templateUrl: 'countdown-view.html',
                 controller: 'CountdownController'
             });

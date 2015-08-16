@@ -29,9 +29,10 @@
     </head>
     <body>
         <div class="navigation-bar text-center">
-            <a ui-sref="clock" ui-sref-active="navigation-bar-active">Clock</a>
-            <a ui-sref="countdown" ui-sref-active="navigation-bar-active">Countdown</a>
-            <a ui-sref="stopwatch" ui-sref-active="navigation-bar-active">Stopwatch</a>
+            <a ui-sref="splash({list_uuid: user.id})" ui-sref-active="navigation-bar-active">Home</a>
+            <a ui-sref="clock({list_uuid: user.id})" ui-sref-active="navigation-bar-active">Clock</a>
+            <a ui-sref="countdown({list_uuid: user.id})" ui-sref-active="navigation-bar-active">Countdown</a>
+            <a ui-sref="stopwatch({list_uuid: user.id})" ui-sref-active="navigation-bar-active">Stopwatch</a>
         </div>
         <div data-ui-view></div>
     </body>

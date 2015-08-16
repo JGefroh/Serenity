@@ -2,7 +2,7 @@
     function Routes($stateProvider) {
         $stateProvider
             .state('clock', {
-                url: '/clock',
+                url: '/clock/:list_uuid',
                 templateUrl: 'clock-view.html',
                 controller: 'ClockController'
             });

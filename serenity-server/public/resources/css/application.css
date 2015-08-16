@@ -104,6 +104,21 @@ body {
     border-bottom: 1px gray solid;
 }
 
+/**Marker*/
+.marker-text {
+    border: none;
+    display: inline-block;
+    width: 50%;
+    background-color: transparent;
+}
+
+.marker:hover {
+  background-color: lightgray;
+}
+
+.marker-timestamp {
+  border-bottom: 1px dotted gray;
+}
 /**OLD*/
 .reminder:hover {
     background-color: lightgray;
@@ -117,14 +132,6 @@ body {
     display: inline-block;
     width: 50%;
     background-color: transparent;
-}
-
-.reminder-timepicker a {
-    color: black;
-}
-
-.reminder-overdue {
-    text-decoration: line-through;
 }
 
 .clock-light-on {

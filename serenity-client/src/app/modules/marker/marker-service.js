@@ -17,26 +17,26 @@
           }
         }
 
-        self.createMarker = function(marker) {
-          return $http.post(endpoints.createMarker(), marker).then(function(response) {
+        self.createMarker = function(marker, uuid) {
+          return $http.post(endpoints.createMarker(), marker, {params: {list_uuid: uuid}}).then(function(response) {
             return response.data;
           });
         }
 
-        self.updateMarker = function(marker) {
-          return $http.put(endpoints.updateMarker(marker.id), marker).then(function(response) {
+        self.updateMarker = function(marker, uuid) {
+          return $http.put(endpoints.updateMarker(marker.id), marker, {params: {list_uuid: uuid}}).then(function(response) {
             return response.data;
           });
         }
 
         self.deleteMarker = function(id, uuid) {
-          return $http.delete(endpoints.deleteMarker(id), {params: {uuid: uuid}}).then(function(response) {
+          return $http.delete(endpoints.deleteMarker(id), {params: {list_uuid: uuid}}).then(function(response) {
             return response.data;
           });
         }
 
-        self.getMarkers = function() {
-          return $http.get(endpoints.getMarkers()).then(function(response) {
+        self.getMarkers = function(uuid) {
+          return $http.get(endpoints.getMarkers(), {params:{list_uuid: uuid}}).then(function(response) {
             return response.data;
           });
         }

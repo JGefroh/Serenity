@@ -2,7 +2,7 @@
     function Routes($stateProvider) {
         $stateProvider
             .state('stopwatch', {
-                url: '/stopwatch',
+                url: '/stopwatch/:list_uuid',
                 templateUrl: 'stopwatch-view.html',
                 controller: 'StopwatchController'
             });

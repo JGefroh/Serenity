@@ -1,36 +1,51 @@
 (function() {
     function Controller($scope,
+                        $stateParams,
                         ClockService,
-                        MarkerService) {
+                        MarkerService,
+                        SecurityService) {
         function initialize() {
+            SecurityService.reserveId($stateParams.list_uuid);
             $scope.clock = ClockService.getClock();
             $scope.toggleMilitaryTime = ClockService.toggleMilitaryTime;
             $scope.toggleMilitaryDate = ClockService.toggleMilitaryDate;
+            $scope.operations = {
+              createMarker: {},
+              deleteMarker: {
+                markers: {}
+              }
+            }
             loadData();
         }
 
         function loadData() {
-          MarkerService.getMarkers().then(function(markers) {
+          MarkerService.getMarkers(SecurityService.user.id).then(function(markers) {
             $scope.markers = markers;
           });
         }
 
-
-
         $scope.createMarker = function() {
-          MarkerService.createMarker({list_uuid: 'TEST-01-UUID'}).then(function(marker) {
+          $scope.operations.createMarker.status = 'LOADING';
+          MarkerService.createMarker({list_uuid: SecurityService.user.id}, SecurityService.user.id).then(function(marker) {
             $scope.markers.push(marker);
+          }).finally(function() {
+            $scope.operations.createMarker.status = null;
           });
         }
 
         $scope.updateMarker = function(marker) {
-          MarkerService.updateMarker(marker).then(function(marker) {
+          MarkerService.updateMarker(marker, SecurityService.user.id).then(function(marker) {
           });
         }
 
         $scope.deleteMarker = function(marker) {
-          MarkerService.deleteMarker(marker.id, 'TEST-01-UUID').then(function() {
+          $scope.operations.deleteMarker.markers[marker.id] = {
+            status: 'LOADING'
+          }
+          MarkerService.deleteMarker(marker.id, SecurityService.user.id).then(function() {
             $scope.markers.splice($scope.markers.indexOf(marker), 1);
+          }).finally(function() {
+            delete $scope.operations.deleteMarker.markers[marker.id];
           });
         }
 
@@ -39,7 +54,9 @@
     angular
         .module('Serenity.Clock')
         .controller('ClockController', ['$scope',
+                                        '$stateParams',
                                         'ClockService',
                                         'MarkerService',
+                                        'SecurityService',
                                         Controller]);
 })();

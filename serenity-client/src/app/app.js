@@ -12,6 +12,7 @@
             'Serenity.Countdown',
             'Serenity.Clock',
             'Serenity.Marker',
+            'Serenity.Security',
             'Serenity.Splash'
         ]);
     angular
@@ -21,6 +22,8 @@
 
     angular
         .module('Serenity')
-        .controller('AppCtrl', ['$scope', '$interval', function($scope, $interval) {
+        .controller('AppCtrl', ['$state', '$scope', 'SecurityService', function($state, $scope, SecurityService) {
+          SecurityService.reserveId($state.params.list_uuid);
+          $scope.user = SecurityService.user;
         }]);
 })();

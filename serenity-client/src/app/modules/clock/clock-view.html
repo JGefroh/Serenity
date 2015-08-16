@@ -14,7 +14,8 @@
         <h5 style="border-bottom: 1px black solid;">
           Events
            <span data-ng-click="createMarker()"
-                 class="fa fa-plus clickable"></span>
+                 data-ng-class="{'fa-plus': !operations.createMarker.status, 'fa-loading': operations.createMarker.status}"
+                 class="fa fa-fw clickable"></span>
         </h5>
         <div data-ng-repeat="marker in markers"
              class="marker">
@@ -23,6 +24,7 @@
             |
             <input data-ng-model="marker.description"
                    data-ng-blur="updateMarker(marker)"
+                   data-ng-disabled="operations.deleteMarker.markers[marker.id].status"
                    placeholder="Enter a description..."
                    class="marker-text">
                     <span data-ng-click="deleteMarker(marker)"

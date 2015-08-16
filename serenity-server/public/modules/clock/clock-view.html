@@ -11,5 +11,22 @@
              data-show-time="true"
              class="clickable"
              ui-sref="countdown"></div>
+        <h5 style="border-bottom: 1px black solid;">
+          Events
+           <span data-ng-click="createMarker()"
+                 class="fa fa-plus clickable"></span>
+        </h5>
+        <div data-ng-repeat="marker in markers"
+             class="marker">
+            <span data-ng-bind="marker.created_at | date:clock.timeFormat"
+                  class="marker-timestamp"></span>
+            |
+            <input data-ng-model="marker.description"
+                   data-ng-blur="updateMarker(marker)"
+                   placeholder="Enter a description..."
+                   class="marker-text">
+                    <span data-ng-click="deleteMarker(marker)"
+                          class="fa fa-trash fa-fw clickable pull-right"></span>
+        </div>
     </div>
 </div>
