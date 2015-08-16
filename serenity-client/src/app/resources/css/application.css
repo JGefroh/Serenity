@@ -1,0 +1,145 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+
+body {
+    /*padding-top: 50px;*/
+    font-family: 'Open Sans', sans-serif;
+}
+/**General*/
+.clickable {
+    cursor: pointer;
+}
+
+.time-display {
+    font-size: 8em;
+    text-align: center;
+}
+
+/**Splash*/
+.splash-container {
+    width: 680px;
+    margin: 0 auto;
+}
+
+.splash-container {
+    width: 680px;
+    margin-top: 25%;
+    opacity: 0;
+}
+
+.splash-application-name {
+    font-size: 8em;
+}
+
+.splash-intro-animation {
+    opacity: 1;
+    margin-top: 10%;
+    transition: all 1.5s;
+}
+
+/**Navigation*/
+.navigation-bar {
+    margin-bottom: 10%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.navigation-bar a {
+    font-size: 2em;
+    padding: 0.25em;
+}
+
+.navigation-bar-active {
+    border-bottom: 1px black solid;
+}
+
+.navigation-bar a:hover, .navigation-bar a:focus    {
+    text-decoration: none;
+}
+
+/**Clock*/
+.clock-container {
+    margin: 0 auto;
+    width: 680px;
+}
+
+/**Countdown*/
+.countdown-container {
+    margin: 0 auto;
+    width: 680px;
+}
+
+.countdown-input {
+    border: none;
+    border-bottom: 1px gray solid;
+    text-align: right;
+    width:120px;
+    font-size: 1.2em;
+    background-color: transparent;
+}
+
+.countdown-over-alert-on {
+    color: red;
+    transition: all 0.5s;
+}
+.countdown-over-alert-off {
+    color: black;
+    transition: all 0.5s;
+}
+
+.countdown-bar {
+}
+.countdown-bar-used {
+    display: block;
+    border-bottom: 1px black solid;
+    margin: 0 auto;
+}
+
+/**Stopwatch*/
+.stopwatch-container {
+    margin: 0 auto;
+    width: 680px;
+}
+
+.splits-header {
+    border-bottom: 1px gray solid;
+}
+
+/**Marker*/
+.marker-text {
+    border: none;
+    display: inline-block;
+    width: 50%;
+    background-color: transparent;
+}
+
+.marker:hover {
+  background-color: lightgray;
+}
+
+.marker-timestamp {
+  border-bottom: 1px dotted gray;
+}
+/**OLD*/
+.reminder:hover {
+    background-color: lightgray;
+}
+.reminder-timestamp {
+    border-bottom: 1px dotted gray;
+}
+
+.reminder-text {
+    border: none;
+    display: inline-block;
+    width: 50%;
+    background-color: transparent;
+}
+
+.clock-light-on {
+    background-color: white;
+    color: black;
+}
+
+.clock-light-off {
+    background-color: black;
+    color: grey;
+}

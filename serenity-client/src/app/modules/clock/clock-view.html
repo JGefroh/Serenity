@@ -1,0 +1,35 @@
+<div class="clock-container">
+    <div class="clock">
+        <span data-ng-click="toggleMilitaryDate()"
+              data-ng-bind="clock.currentTimestamp | date:clock.dateFormat"
+              class="clickable"></span>
+        <h1 data-ng-click="toggleMilitaryTime()"
+            class="time-display clickable">
+            <span data-ng-bind="clock.currentTimestamp | date:clock.timeFormat"></span>
+        </h1><br/>
+        <div data-countdown-bar
+             data-show-time="true"
+             class="clickable"
+             ui-sref="countdown"></div>
+        <h5 style="border-bottom: 1px black solid;">
+          Events
+           <span data-ng-click="createMarker()"
+                 data-ng-class="{'fa-plus': !operations.createMarker.status, 'fa-spinner fa-spin': operations.createMarker.status}"
+                 class="fa fa-fw clickable"></span>
+        </h5>
+        <div data-ng-repeat="marker in markers"
+             class="marker">
+            <span data-ng-bind="marker.created_at | date:clock.timeFormat"
+                  class="marker-timestamp"></span>
+            |
+            <input data-ng-model="marker.description"
+                   data-ng-blur="updateMarker(marker)"
+                   data-ng-disabled="operations.markers[marker.id].status"
+                   placeholder="Enter a description..."
+                   class="marker-text">
+                    <span data-ng-click="deleteMarker(marker)"
+                          data-ng-class="{'fa-trash': !operations.markers[marker.id].status, 'fa-spinner fa-spin': operations.markers[marker.id].status}"
+                          class="fa fa-fw clickable pull-right"></span>
+        </div>
+    </div>
+</div>
